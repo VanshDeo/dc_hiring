@@ -24,6 +24,14 @@ interface Step3ExperienceProps {
 export function Step3Experience({ experience, setExperience, onValidate }: Step3ExperienceProps) {
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  const blockClipboard = (event: React.ClipboardEvent<HTMLTextAreaElement>) => {
+    event.preventDefault();
+  };
+
+  const blockDrop = (event: React.DragEvent<HTMLTextAreaElement>) => {
+    event.preventDefault();
+  };
+
   const handleChange = (field: string, value: string) => {
     setExperience((prev: any) => ({ ...prev, [field]: value }));
     // Clear error when user starts typing
@@ -102,9 +110,13 @@ export function Step3Experience({ experience, setExperience, onValidate }: Step3
             placeholder="e.g., I love how this Dev Community lets people build their own projects..."
             value={experience.excites}
             onChange={(e) => handleChange('excites', (e.target as HTMLTextAreaElement).value)}
+            onCopy={blockClipboard}
+            onCut={blockClipboard}
+            onPaste={blockClipboard}
+            onDrop={blockDrop}
             error={errors.excites}
             currentChars={experience.excites.length}
-            minChars={200}
+            minChars={100}
           />
         </div>
 
@@ -117,9 +129,13 @@ export function Step3Experience({ experience, setExperience, onValidate }: Step3
             placeholder="e.g., I want to grow with builders, run local events, and..."
             value={experience.whyJoin}
             onChange={(e) => handleChange('whyJoin', (e.target as HTMLTextAreaElement).value)}
+            onCopy={blockClipboard}
+            onCut={blockClipboard}
+            onPaste={blockClipboard}
+            onDrop={blockDrop}
             error={errors.whyJoin}
             currentChars={experience.whyJoin.length}
-            minChars={200}
+            minChars={100}
           />
         </div>
 
