@@ -26,6 +26,7 @@ export default function Home() {
     email: '',
     location: '',
     accommodation: '',
+    department: '',
     twitter: '',
     discord: '',
     linkedin: '',

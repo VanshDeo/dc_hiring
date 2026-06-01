@@ -8,6 +8,7 @@ interface Step1AboutProps {
     email: string;
     location: string;
     accommodation: string;
+    department: string;
     twitter: string;
     discord: string;
     linkedin: string;
@@ -113,6 +114,10 @@ export function Step1About({ formData, setFormData, onValidate }: Step1AboutProp
       newErrors.accommodation = 'Accommodation type is required';
     }
 
+    if (!formData.department.trim()) {
+      newErrors.department = 'Department is required';
+    }
+
     if (!formData.discord.trim()) {
       newErrors.discord = 'Discord handle is required';
     } else if (!validateDiscordHandle(formData.discord)) {
@@ -191,7 +196,17 @@ export function Step1About({ formData, setFormData, onValidate }: Step1AboutProp
             icon={<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>}
           />
         </div>
-
+        <div className="grid grid-cols-1 gap-6 mb-6">
+          <Input
+            label="Department"
+            isRequired
+            placeholder="Your department (e.g., CSE, IT, etc.)"
+            value={formData.department || ''}
+            onChange={(e) => handleChange('department', (e.target as HTMLInputElement).value)}
+            error={errors.department}
+            icon={<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 21v-2a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v2" /><circle cx="12" cy="7" r="4" /></svg>}
+          />
+        </div>
         {/* Location */}
         <SectionHeader title="Location" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
