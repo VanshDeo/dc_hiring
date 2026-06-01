@@ -4,6 +4,7 @@ import type { OAuth2Client } from 'google-auth-library';
 export const SHEET_HEADERS = [
   'fullName',
   'email',
+  'department',
   'location',
   'accomodation',
   'twitter',

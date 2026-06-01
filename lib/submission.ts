@@ -3,6 +3,7 @@ type JsonRecord = Record<string, any>;
 export type ParsedSubmission = {
   fullName: string;
   email: string;
+  department: string;
   country: string;
   city: string;
   location: string;
@@ -132,6 +133,7 @@ export async function parseSubmissionRequest(request: Request): Promise<ParsedSu
     return {
       fullName: toStringValue(formData.get('fullName')).trim(),
       email: toStringValue(formData.get('email')).trim(),
+      department: toStringValue(formData.get('department')).trim(),
       country: locationParts.country,
       city: locationParts.city,
       location: locationParts.location,
@@ -165,6 +167,7 @@ export async function parseSubmissionRequest(request: Request): Promise<ParsedSu
   return {
     fullName: toStringValue(body.fullName).trim(),
     email: toStringValue(body.email).trim(),
+    department: toStringValue(body.department).trim(),
     country: locationParts.country,
     city: locationParts.city,
     location: locationParts.location,
@@ -200,6 +203,7 @@ export function buildSubmissionRow(
   return {
     fullName: submission.fullName,
     email: submission.email,
+    department: submission.department,
     location: submission.location,
     accomodation: submission.accommodation,
     twitter: submission.twitter,
