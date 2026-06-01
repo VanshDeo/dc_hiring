@@ -50,13 +50,13 @@ export function Step3Experience({ experience, setExperience, onValidate }: Step3
     if (!experience.excites.trim()) {
       newErrors.excites = 'This field is required';
     } else if (experience.excites.length < 200) {
-      newErrors.excites = `Please write at least 200 characters (currently ${experience.excites.length})`;
+      newErrors.excites = `Please write at least 100 characters (currently ${experience.excites.length})`;
     }
 
     if (!experience.whyJoin.trim()) {
       newErrors.whyJoin = 'This field is required';
     } else if (experience.whyJoin.length < 200) {
-      newErrors.whyJoin = `Please write at least 200 characters (currently ${experience.whyJoin.length})`;
+      newErrors.whyJoin = `Please write at least 100 characters (currently ${experience.whyJoin.length})`;
     }
 
     setErrors(newErrors);
