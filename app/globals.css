@@ -13,8 +13,8 @@
   --color-foreground: var(--foreground);
   
   /* Custom Design System Colors */
-  --color-accent: #10b981;
-  --color-accent-hover: #34d399;
+  --color-accent: #00a844;
+  --color-accent-hover: #00d65b;
   --color-surface: #000000;
   --color-input: #0e0e0e;
   --color-border: rgba(255, 255, 255, 0.08);

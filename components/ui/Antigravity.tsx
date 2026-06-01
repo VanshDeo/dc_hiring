@@ -13,7 +13,7 @@ interface AntigravityProps {
 export function Antigravity({
   gridSize = 26,
   particleSize = 1.5,
-  particleColor = '#10b981',
+  particleColor = '#00a844',
   magnetRadius = 65,
   fieldStrength = 1.0,
 }: AntigravityProps) {
@@ -36,8 +36,8 @@ export function Antigravity({
     if (resolvedColor.startsWith('var(')) {
       const varName = resolvedColor.slice(4, -1).trim();
       resolvedColor = typeof window !== 'undefined'
-        ? getComputedStyle(document.documentElement).getPropertyValue(varName).trim() || '#10b981'
-        : '#10b981';
+        ? getComputedStyle(document.documentElement).getPropertyValue(varName).trim() || '#00a844'
+        : '#00a844';
     }
 
     class Particle {

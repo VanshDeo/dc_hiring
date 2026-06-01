@@ -19,7 +19,9 @@ export const metadata: Metadata = {
   title: "Dev Community",
   description: "Apply to join the Dev Community - A global network of innovators pushing Dev Community forward",
   icons: {
-    icon: "/dcLogo.webp",
+    icon: "/dcLogo_black.webp",
+    shortcut: "/dcLogo_black.webp",
+    apple: "/dcLogo_black.webp",
   },
 };
 
