@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { SplitLayout } from '../components/layout/SplitLayout';
 import { StepIndicator } from '../components/ui/StepIndicator';
 import { Button } from '../components/ui/Button';
@@ -12,10 +13,12 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export default function Home() {
+  const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 4;
   const [isHydrated, setIsHydrated] = useState(false);
   const storageKey = 'dc-hiring-form-state';
+  const submittedKey = 'dc-hiring-form-submitted';
 
   // Form state
   const [formData, setFormData] = useState({
@@ -47,6 +50,13 @@ export default function Home() {
   });
 
   useEffect(() => {
+    const hasSubmitted = window.localStorage.getItem(submittedKey) === 'true';
+
+    if (hasSubmitted) {
+      router.replace('/submitted');
+      return;
+    }
+
     const savedState = window.localStorage.getItem(storageKey);
 
     if (savedState) {
@@ -77,7 +87,7 @@ export default function Home() {
     }
 
     setIsHydrated(true);
-  }, []);
+  }, [router, submittedKey]);
 
   useEffect(() => {
     if (!isHydrated) return;
@@ -136,6 +146,9 @@ export default function Home() {
         }
 
         console.log('✅ Submission successful:', data);
+        window.localStorage.setItem(submittedKey, 'true');
+        window.localStorage.removeItem(storageKey);
+        router.replace('/submitted');
         return data;
       }).catch((error) => {
         console.error('❌ Fetch error:', error);
@@ -144,7 +157,7 @@ export default function Home() {
 
       toast.promise(submitPromise, {
         loading: 'Submitting application...',
-        success: 'Application submitted successfully! Check your email.',
+        success: 'Application submitted successfully! Redirecting...',
         error: (err) => `Error: ${err.message}`,
       });
     }
